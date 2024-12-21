@@ -4,16 +4,16 @@ const Hero = () => {
   const whatsappLink = "https://wa.me/573218021869?text=Hola,%20me%20interesa%20saber%20más%20sobre%20los%20cachorros%20Teckel";
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-primario-100 to-white">
-      <div className="contenedor relative z-10 pt-24 pb-16 md:pt-32 md:pb-24">
+    <section className="hero">
+      <div className="hero__container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl mx-auto text-center"
+          className="hero__content"
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-secundario-800 mb-6"
+            className="hero__title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -22,7 +22,7 @@ const Hero = () => {
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-xl text-secundario-600 mb-8"
+            className="hero__description"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -32,7 +32,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="hero__actions"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -41,10 +41,10 @@ const Hero = () => {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primario flex items-center justify-center gap-2"
+              className="hero__button"
             >
               <svg 
-                className="w-6 h-6" 
+                className="hero__button--icon" 
                 fill="currentColor" 
                 viewBox="0 0 24 24"
               >
@@ -54,7 +54,7 @@ const Hero = () => {
             </a>
             <a 
               href="/cachorros"
-              className="btn-secundario"
+              className="hero__button"
             >
               Ver Cachorros
             </a>
@@ -64,7 +64,7 @@ const Hero = () => {
 
       {/* Elementos decorativos animados */}
       <motion.div
-        className="absolute top-20 right-10 w-24 h-24 rounded-full bg-primario-200 opacity-50"
+        className="hero__decorative hero__decorative--primary"
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 90, 0],
@@ -76,7 +76,7 @@ const Hero = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-20 left-10 w-16 h-16 rounded-full bg-secundario-200 opacity-50"
+        className="hero__decorative hero__decorative--secondary"
         animate={{
           scale: [1, 1.3, 1],
           rotate: [0, -90, 0],

@@ -1,0 +1,32 @@
+// Estructura base para SASS con metodología BEM
+
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Estilos globales
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+// Ejemplo de BEM
+.block {
+  &__element {
+    color: $primary-color;
+    @include flex-center;
+  }
+
+  &--modifier {
+    background-color: $secondary-color;
+  }
+}

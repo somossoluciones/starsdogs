@@ -74,121 +74,115 @@ const CarruselCachorros = () => {
   };
 
   return (
-    <div>
-      <div className="relative overflow-hidden">
-      <div className="contenedor relative h-[600px]">
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={currentIndex}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
+    <>
+      <div className="carrusel">
+        <div className="carrusel__container">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
 
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
-            className="absolute w-full"
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1);
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1);
+                }
+              }}
+              className="carrusel__slide"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  cachorros[currentIndex],
+                  cachorros[(currentIndex + 1) % cachorros.length],
+                  cachorros[(currentIndex + 2) % cachorros.length]
+                ].map((cachorro, index) => (
+                  <TarjetaCachorro key={index} {...cachorro} />
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Controles del carrusel */}
+        <button
+          className="carrusel__control carrusel__control--left"
+          aria-label="Anterior"
+          onClick={() => paginate(-1)}
+        >
+          <svg 
+            className="carrusel__control--icon" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                cachorros[currentIndex],
-                cachorros[(currentIndex + 1) % cachorros.length],
-                cachorros[(currentIndex + 2) % cachorros.length]
-              ].map((cachorro, index) => (
-                <TarjetaCachorro key={index} {...cachorro} />
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M15 19l-7-7 7-7" 
+            />
+          </svg>
+        </button>
 
-      {/* Controles del carrusel */}
-      <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg hover:bg-primario-100 transition-colors"
-        onClick={() => paginate(-1)}
-      >
-        <svg 
-          className="w-6 h-6 text-secundario-800" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
+        <button
+          className="carrusel__control carrusel__control--right"
+          aria-label="Siguiente"
+          onClick={() => paginate(1)}
         >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M15 19l-7-7 7-7" 
-          />
-        </svg>
-      </button>
+          <svg 
+            className="carrusel__control--icon" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M9 5l7 7-7 7" 
+            />
+          </svg>
+        </button>
 
-      <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg hover:bg-primario-100 transition-colors"
-        onClick={() => paginate(1)}
-      >
-        <svg 
-          className="w-6 h-6 text-secundario-800" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M9 5l7 7-7 7" 
-          />
-        </svg>
-      </button>
-
-      {/* Indicadores */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {cachorros.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-primario-500' : 'bg-primario-200'
-            }`}
-            onClick={() => {
-              const direction = index - currentIndex;
-              setDirection(direction);
-              setCurrentIndex(index);
-            }}
-          />
-        ))}
-      </div>
-    </div>
-    <div className="text-center mt-8">
-      <a 
-        href="/cachorros" 
-        className="inline-block bg-primario-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-primario-600 transition-colors"
-      >
-        Ver todos los cachorros
-      </a>
+        {/* Indicadores */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {cachorros.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === currentIndex ? 'bg-primario-500' : 'bg-primario-200'
+              }`}
+              onClick={() => {
+                const direction = index - currentIndex;
+                setDirection(direction);
+                setCurrentIndex(index);
+              }}
+            />
+          ))}
+        </div>
       </div>
       <div className="text-center mt-8">
         <a 
           href="/cachorros" 
-          className="inline-block bg-primario-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-primario-600 transition-colors"
+          className="carrusel__link"
         >
           Ver todos los cachorros
         </a>
       </div>
-    </div>
+    </>
   );
 };
 

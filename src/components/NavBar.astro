@@ -2,23 +2,21 @@
 import { Icon } from '@iconify/react';
 ---
 
-<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-80 shadow-md">
-  <div class="container mx-auto px-4 py-2 flex justify-between items-center">
-    <a href="/" class="flex items-center">
-      <Icon icon="mdi:home" className="text-xl mr-2" />
+<nav class="navbar">
+  <div class="navbar__container">
+    <a href="/" class="navbar__link">
+      <Icon icon="mdi:home" className="navbar__link--icon" />
       Inicio
     </a>
-    <div class="flex space-x-4">
-      <a href="#clientes-felices" class="hover:underline">Clientes Felices</a>
-      <a href="#cachorros-disponibles" class="hover:underline">Cachorros Disponibles</a>
-      <a href="#criadero" class="hover:underline">Criadero</a>
-      <a href="#contacto" class="hover:underline">Contacto</a>
+    <div class="navbar__menu">
+      <a href="#clientes-felices" class="navbar__link">Clientes Felices</a>
+      <a href="#cachorros-disponibles" class="navbar__link">Cachorros Disponibles</a>
+      <a href="#criadero" class="navbar__link">Criadero</a>
+      <a href="#contacto" class="navbar__link">Contacto</a>
     </div>
   </div>
 </nav>
 
 <style>
-  nav {
-    backdrop-filter: blur(10px);
-  }
+  @import '../styles/NavBar.scss';
 </style>
