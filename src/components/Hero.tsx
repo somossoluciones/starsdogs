@@ -53,7 +53,7 @@ const Hero = () => {
               Consultar Disponibilidad
             </a>
             <a 
-              href="#cachorros"
+              href="/cachorros"
               className="btn-secundario"
             >
               Ver Cachorros

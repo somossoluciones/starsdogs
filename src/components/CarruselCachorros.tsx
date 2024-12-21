@@ -74,7 +74,8 @@ const CarruselCachorros = () => {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div>
+      <div className="relative overflow-hidden">
       <div className="contenedor relative h-[600px]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
@@ -169,6 +170,23 @@ const CarruselCachorros = () => {
             }}
           />
         ))}
+      </div>
+    </div>
+    <div className="text-center mt-8">
+      <a 
+        href="/cachorros" 
+        className="inline-block bg-primario-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-primario-600 transition-colors"
+      >
+        Ver todos los cachorros
+      </a>
+      </div>
+      <div className="text-center mt-8">
+        <a 
+          href="/cachorros" 
+          className="inline-block bg-primario-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-primario-600 transition-colors"
+        >
+          Ver todos los cachorros
+        </a>
       </div>
     </div>
   );
