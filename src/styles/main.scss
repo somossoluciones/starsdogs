@@ -1,8 +1,10 @@
-// Estructura base para SASS con metodología BEM
+@use './abstracts/variables' as *;
+@use './base/reset';
+@use 'components/navigation';
 
 // Variables
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
+$primary-color: $deep-blue;
+$secondary-color: $gold;
 
 // Mixins
 @mixin flex-center {
@@ -16,7 +18,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: $light-gray;
 }
 
 // Ejemplo de BEM
